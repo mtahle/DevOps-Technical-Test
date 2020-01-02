@@ -1,0 +1,20 @@
+{
+  "personalInfo":{
+    "fName":"Mujahed",
+    "lName":"Altahlhe",
+    "gender":"male",
+    "age": 32,
+    "maried": true
+  },
+"contact:":{
+  "email":"mtahle@outlook.com",
+  "mobile":"+962791037710",
+  "fax":null
+},
+  "hoppies": [
+    "reading",
+    "swimming",
+    "walking"
+  ],
+  "favorateColor": "#82b92c"
+}
