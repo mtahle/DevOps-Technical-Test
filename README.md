@@ -1,4 +1,4 @@
-#RLDatix DevOps Technical Test
+# DevOps Technical Test
 
 Please create a git controlled directory for the following tasks. Please use git to manage your work and submit the git history with the project.
 
