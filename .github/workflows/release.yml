@@ -1,0 +1,35 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests
+
+      - name: Build Docker image
+        run: docker build -t json-app:${{ github.sha }} .
+
+      - name: Create source archive
+        run: zip -r release.zip . -x '*.git*'
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: release-${{ github.sha }}
+          name: Release ${{ github.sha }}
+          files: release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
