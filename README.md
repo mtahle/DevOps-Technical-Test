@@ -6,7 +6,7 @@ Please create a git controlled directory for the following tasks. Please use git
 
 Please describe yourself, your interests and anything else you would like to include as a JSON object.
 
-### Helloworld Dockerfile
+### Hello World Dockerfile
 
 Build a Dockerfile using "ubuntu:xenial" as a base image, include a web server of your choice that returns this JSON object.
 
