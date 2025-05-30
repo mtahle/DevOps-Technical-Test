@@ -6,32 +6,18 @@ build_image() {
 }
 
 run_container(){
-# check if there is already running container with the name "web" and prompt user what to do
-    RUNNING_CONTAINERS_NAMES=()
-    while IFS= read -r line; do
-        RUNNING_CONTAINERS_NAMES+=( "$line" )
-    done < <( docker ps --format '{{.Names}}' -a)
-
-    for CONTAINER_NAME in "${RUNNING_CONTAINERS_NAMES[@]}"
-    do
-        if [ "$CONTAINER_NAME" != "web" ];then
-        docker run -d -p80:80 --name web $IMAGE:$TAG
+    # ensure only a single container called "web" exists
+    if docker ps --format '{{.Names}}' -a | grep -wq "web"; then
+        echo "There is a currently running container with the name web"
+        read -p "Do you want to stop and remove it? (Y/N) " ANSWER
+        if [ "$ANSWER" = "Y" ] || [ "$ANSWER" = "y" ]; then
+            docker rm -f web
         else
-            echo "There is a currently running container with the name $CONTAINER_NAME has the value"
-            read -p "Do you want to stop and remove it? (Y/N)" ANSWER
-            if [ "$ANSWER" = "Y" ] || [ "$ANSWER" = "y" ]; then
-                docker rm -f $CONTAINER_NAME
-                docker run -d -p80:80 --name web $IMAGE:$TAG
-                break
-
-            elif [ "$ANSWER" = "N" ] || [ "$ANSWER" = "n" ]; then
-                exit 0
-            else 
-                read -p "Do you want to stop and remove it? (Y/N)" ANSWER
-            fi
+            exit 0
         fi
-    done
+    fi
 
+    docker run -d -p80:80 --name web "$IMAGE:$TAG"
 }
 
 test_connection(){
