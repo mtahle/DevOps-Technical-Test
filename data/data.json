@@ -4,17 +4,17 @@
     "lName":"Altahlhe",
     "gender":"male",
     "age": 32,
-    "maried": true
+    "married": true
   },
 "contact:":{
   "email":"mtahle@outlook.com",
   "mobile":"+962791037710",
   "fax":null
 },
-  "hoppies": [
+  "hobbies": [
     "reading",
     "swimming",
     "walking"
   ],
-  "favorateColor": "#82b92c"
+  "favoriteColor": "#82b92c"
 }
