@@ -24,3 +24,12 @@ Create an example kubernetes manifest and consider the following requirements:
 ### Return a zipped git directory
 
 Please zip the directory and return it via email.
+
+### Running Tests
+
+Run the Python unit tests with:
+
+```bash
+python -m unittest
+```
+
