@@ -6,8 +6,8 @@ build_image() {
 }
 
 run_container(){
-    # ensure only a single container called "web" exists
-    if docker ps --format '{{.Names}}' -a | grep -wq "web"; then
+    # check once if a container called "web" is already running
+    if docker ps --format '{{.Names}}' | grep -wq "web"; then
         echo "There is a currently running container with the name web"
         read -p "Do you want to stop and remove it? (Y/N) " ANSWER
         if [ "$ANSWER" = "Y" ] || [ "$ANSWER" = "y" ]; then
